@@ -1,11 +1,14 @@
-﻿using ConnectionStringHelper;
+﻿using AutoMapper;
+using ConnectionStringHelper;
 using DALCompact;
+using DALServer;
 using MeetingsDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tools;
 
 namespace DALDataProvider
 {
@@ -67,7 +70,7 @@ namespace DALDataProvider
         //    }
         //    return meetings;
         //}
-        string fileName = @"D:\VisualStudio\WPFMeetings\DB\Meetings.sdf";
+        
         string connectionStringLocal;
         private string ConnectionStringLocal
         {
@@ -75,11 +78,22 @@ namespace DALDataProvider
             {
                 if (string.IsNullOrEmpty(connectionStringLocal))
                 {
-                    // ConnectionString c = new ConnectionString();
-                    connectionStringLocal=ConnectionString.GetSqlCompactConnectionString(fileName, "MeetingsLocalModel");
-                    //connectionStringLocal = ConnectionString.GetEntityFrameworkConnectionString("MeetingsLocalModel", fileName);
+                    connectionStringLocal=ConnectionString.GetSqlCompactEntityFrameworkConnectionString(Consts.CompactFilePath, Consts.MetaDataNameLocal);
                 }
                 return connectionStringLocal;
+            }
+        }
+
+        string connectionStringServer;
+        private string ConnectionStringServer
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(connectionStringServer))
+                {
+                    connectionStringServer = ConnectionString.GetSqlEntityFrameworkConnectionString(Consts.DataSource,Consts.DatabasesName, Consts.MetaDataNameServer);
+                }
+                return connectionStringServer;
             }
         }
 
@@ -96,6 +110,34 @@ namespace DALDataProvider
                 return localContext;
             }
         }
+
+        WPFMeetingsEntities serverContext;
+        private WPFMeetingsEntities ServerContext
+        {
+            get
+            {
+                if (serverContext == null)
+                {
+                    serverContext = new WPFMeetingsEntities(ConnectionStringServer);
+
+                }
+                return serverContext;
+            }
+        }
+
+        //MeetingsLocalEntities serverContext;
+        //private MeetingsLocalEntities ServerContext
+        //{
+        //    get
+        //    {
+        //        if (serverContext == null)
+        //        {
+        //            serverContext = new MeetingsLocalEntities(ConnectionStringServer);
+
+        //        }
+        //        return serverContext;
+        //    }
+        //}
 
         public List<MeetingsDTO.Meeting> GetCompactMeetings()
         {
@@ -148,24 +190,30 @@ namespace DALDataProvider
 
         public void AddCompactMeeting(MeetingsDTO.Meeting input)
         {
-            DALCompact.Meeting meeting = new DALCompact.Meeting();
-            //DALLocal.Tables.Meeting meeting = new DALLocal.Tables.Meeting();
-            if (input.MeetingId.HasValue)
-            {
-                meeting.MeetingId = input.MeetingId.Value;
-            }
-            else
-            {
-                meeting.MeetingId = -1;
-            }
-            meeting.AfterNotes = input.AfterNotes;
-            meeting.BeforeNotes = input.BeforeNotes;
-            meeting.DuringNotes = input.DuringNotes;
-            meeting.Date = input.Date;
+            IMapper Mapper = new Mapper(AutoMapperConfig.Configuration);
+            var compactMeeting = Mapper.Map<DALCompact.Meeting>(input);
 
-            MeetingsLocalEntities meetingContect = new DALCompact.MeetingsLocalEntities();
-            meetingContect.Meeting.Add(meeting);
-            meetingContect.SaveChanges();
+            //if (input.MeetingId.HasValue)
+            //{
+            //    meeting.MeetingId = input.MeetingId.Value;
+            //}
+            //else
+            //{
+            //    meeting.MeetingId = -1;
+            //}
+            //meeting.AfterNotes = input.AfterNotes;
+            //meeting.BeforeNotes = input.BeforeNotes;
+            //meeting.DuringNotes = input.DuringNotes;
+            //meeting.Date = input.Date;
+
+           // MeetingsLocalEntities meetingContect = new DALCompact.MeetingsLocalEntities();
+            LocalContext.Meeting.Add(compactMeeting);
+            LocalContext.SaveChanges();
+
+            var serverMeeting = Mapper.Map<DALServer.Meeting>(input);
+            ServerContext.Meeting.Add(serverMeeting);
+            ServerContext.SaveChanges();
+
         }
     }
 }

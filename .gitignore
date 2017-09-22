@@ -6,3 +6,4 @@ packages/
 artifacts/
 *.user
 *.suo
+out/
