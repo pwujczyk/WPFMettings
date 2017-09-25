@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPFMeetingsWorkplacePlugin.Functions;
+using WPFMeetingsWorkplacePlugin.Plugins;
 using WPFRibbonWorkplaceContracts;
 
 namespace WPFMeetingsWorkplacePlugin
@@ -39,6 +40,7 @@ namespace WPFMeetingsWorkplacePlugin
                 var list = new List<IFunction>();
                 list.Add(new Save(this.VM));
                 list.Add(new New(this.VM));
+                list.Add(new LoadContacts(new Contacts()));
                 return list;
             }
         }
@@ -46,6 +48,14 @@ namespace WPFMeetingsWorkplacePlugin
         private void tvMeetings_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             VM.SelectedMeeting = (Meeting)e.NewValue;
+        }
+
+        bool IPluginMainWindow.Main 
+        {
+            get
+            {
+                return true;
+            }
         }
     }
 }

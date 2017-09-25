@@ -7,7 +7,7 @@ using WPFRibbonWorkplaceContracts;
 
 namespace WPFMeetingsWorkplacePlugin.Functions
 {
-    public class Save : IFunction
+    public class Save : BaseFunction, IFunction
     {
         MetingsMainWindowVM VM; 
         private const string AddName = "Save";

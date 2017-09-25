@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contact.cs">
+      <DependentUpon>MeetingsServerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBUp.cs">
+      <DependentUpon>MeetingsServerModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Meeting.cs">
       <DependentUpon>MeetingsServerModel.tt</DependentUpon>
     </Compile>

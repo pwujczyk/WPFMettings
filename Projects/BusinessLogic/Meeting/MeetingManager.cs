@@ -28,7 +28,7 @@ namespace BusinessLogic.Meeting
         public void SaveMeeting(MeetingsDTO.Meeting meeting)
         {
             DALDataManager dataManager = new DALDataManager();
-            dataManager.AddCompactMeeting(meeting);
+            dataManager.AddMeeting(meeting);
             
             //dataManager.AddMeeting(meeting);
         }

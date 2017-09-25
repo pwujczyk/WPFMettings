@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="e40809ae2a0843508f5d3b8376df4daf" Name="Diagram1">
         <EntityTypeShape EntityType="WPFMeetingsModel.Meeting" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WPFMeetingsModel.DBUp" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WPFMeetingsModel.Contact" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -8,20 +8,11 @@ using System.Threading.Tasks;
 
 namespace WPFMeetingsWorkplacePlugin
 {
-    public class MetingsMainWindowVM: INotifyPropertyChanged
+    public class MetingsMainWindowVM: VMBase, INotifyPropertyChanged
     {
         MetingsMainWindowBM Model = new MetingsMainWindowBM();
 
-        List<Meeting> meetings;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void NotifyPropertyChanged(String info)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
-            }
-        }
+        List<Meeting> meetings;   
 
         public List<Meeting> Meetings
         {

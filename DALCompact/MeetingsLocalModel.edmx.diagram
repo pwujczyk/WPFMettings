@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="1cfbadf8f9274ec9b10d676c8660430a" Name="Diagram1">
         <EntityTypeShape EntityType="MeetingsLocalModel.Meeting" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MeetingsLocalModel.Contact" Width="1.5" PointX="3.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MeetingsLocalModel.DBUp" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -19,14 +19,14 @@ namespace DALServer
             : base("name=WPFMeetingsEntities")
         {
         }
-
-        public WPFMeetingsEntities(string connectionString) : base(connectionString) { }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
         public DbSet<Meeting> Meeting { get; set; }
+        public DbSet<DBUp> DBUp { get; set; }
+        public DbSet<Contact> Contact { get; set; }
     }
 }

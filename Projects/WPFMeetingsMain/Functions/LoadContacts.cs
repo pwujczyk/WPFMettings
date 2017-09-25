@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using WPFRibbonWorkplaceContracts;
 
 namespace WPFMeetingsWorkplacePlugin.Functions
 {
-    class New : BaseFunction, IFunction
+    class LoadContacts : BaseFunction, IFunction
     {
 
-        private const string NewName = "New";
-        private const string NewSection = "Basic";
-        private const string NewTab = "Basic";
+        private const string NewName = "Load Contacts";
+        private const string NewSection = "Panels";
+        private const string NewTab = "Panels";
 
-        MetingsMainWindowVM VM;
+        IPluginMainWindow UserControl;
 
         string IFunction.FunctionName
         {
@@ -40,16 +41,16 @@ namespace WPFMeetingsWorkplacePlugin.Functions
             }
         }
 
-        public New(MetingsMainWindowVM vm)
+        public LoadContacts(IPluginMainWindow userControl)
         {
-            VM = vm;
+            UserControl = userControl;
         }
 
         void IFunction.Method()
         {
 
-            VM.AddNew();
-            VM.ClearFields();
+            this.LoadPlugin(UserControl);
+            
         }
     }
 }

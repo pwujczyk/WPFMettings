@@ -19,8 +19,6 @@ namespace DALCompact
             : base("name=MeetingsLocalEntities")
         {
         }
-
-        public MeetingsLocalEntities(string connectionString) : base(connectionString) { }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -28,5 +26,7 @@ namespace DALCompact
         }
     
         public DbSet<Meeting> Meeting { get; set; }
+        public DbSet<Contact> Contact { get; set; }
+        public DbSet<DBUp> DBUp { get; set; }
     }
 }
