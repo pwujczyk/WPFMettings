@@ -1,6 +1,7 @@
 ﻿using DateProviderContract;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace MeetingsDTO
         public string BeforeNotes { get; set; }
         public string DuringNotes { get; set; }
         public string AfterNotes { get; set; }
+        public ObservableCollection<Contact> Contacts { get; set; }
 
         public string DateFormated
         {
@@ -25,7 +27,7 @@ namespace MeetingsDTO
 
         public Meeting()
         {
-     
+            this.Contacts = new ObservableCollection<Contact>();
         }
 
         public Meeting(bool fillvalues):this()

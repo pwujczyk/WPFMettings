@@ -18,7 +18,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin
         {
             get
             {
-                if (contacts!=null)
+                if (contacts==null)
                 {
                     this.contacts = model.GetContacts();
                 }
@@ -45,6 +45,11 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin
             Contact c = new Contact();
             this.Contacts.Add(c);
             this.SelectedContact = c;
+        }
+        
+        internal void Save()
+        {
+            model.SaveContact(this.SelectedContact);
         }
     }
 }

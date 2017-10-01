@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin;
 using WPFRibbonWorkplaceContracts;
 
-namespace WPFMeetingsWorkplacePlugin.Functions
+namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Functions
 {
     class LoadContacts : BaseFunction, IFunction
     {
@@ -15,7 +16,8 @@ namespace WPFMeetingsWorkplacePlugin.Functions
         private const string NewSection = "Panels";
         private const string NewTab = "Panels";
 
-        IPluginMainWindow UserControl;
+      
+        Type type;
 
         string IFunction.FunctionName
         {
@@ -41,15 +43,20 @@ namespace WPFMeetingsWorkplacePlugin.Functions
             }
         }
 
-        public LoadContacts(IPluginMainWindow userControl)
+        //public LoadContacts(IPlugin userControl)
+        //{
+        //    UserControl = userControl;
+        //}
+
+        public LoadContacts(Type userControl)
         {
-            UserControl = userControl;
+            type = userControl;
         }
 
         void IFunction.Method()
         {
-
-            this.LoadPlugin(UserControl);
+            var x=Activator.CreateInstance(type) as IPlugin;
+            this.LoadPlugin(x);
             
         }
     }

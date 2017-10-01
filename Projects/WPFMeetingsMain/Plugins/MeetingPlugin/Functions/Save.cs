@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using WPFRibbonWorkplaceContracts;
 
-namespace WPFMeetingsWorkplacePlugin.Functions
+namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Functions
 {
     public class Save : BaseFunction, IFunction
     {
-        MetingsMainWindowVM VM; 
+        MetingsVM VM; 
         private const string AddName = "Save";
-        private const string AddSection = "Basic";
-        private const string AddTab = "Basic";
+        private const string AddSection = "Meeting";
+        private const string AddTab = "Meeting";
 
         public string FunctionName
         {
@@ -38,7 +38,7 @@ namespace WPFMeetingsWorkplacePlugin.Functions
             }
         }
 
-        public Save(MetingsMainWindowVM vm)
+        public Save(MetingsVM vm)
         {
             this.VM = vm;
         }

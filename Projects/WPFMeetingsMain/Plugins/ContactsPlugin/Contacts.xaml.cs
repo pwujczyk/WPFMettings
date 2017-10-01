@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MeetingsDTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,25 +13,35 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin;
+using WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin.Functions;
+using WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin;
 using WPFRibbonWorkplaceContracts;
 
-namespace WPFMeetingsWorkplacePlugin.Plugins
+namespace WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin
 {
     /// <summary>
     /// Interaction logic for Contacts.xaml
     /// </summary>
-    public partial class Contacts : UserControl, IPluginMainWindow
+    public partial class Contacts : UserControl, IPlugin//, IPluginMainWindow
     {
+        ContactsVM VM;
         public Contacts()
         {
             InitializeComponent();
+            VM = new ContactsVM();
+            this.DataContext = VM;
         }
 
         public List<IFunction> Functions
         {
             get
             {
-                return new List<IFunction>();
+                var list = new List<IFunction>();
+                list.Add(new New(this.VM));
+                list.Add(new Save(this.VM));
+                list.Add(new LoadMeetings(typeof(Meetings)));
+                return list;
             }
         }
 
@@ -41,5 +52,11 @@ namespace WPFMeetingsWorkplacePlugin.Plugins
                 return false;
             }
         }
+
+        private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            this.VM.SelectedContact = (Contact)e.NewValue;
+        }
+
     }
 }

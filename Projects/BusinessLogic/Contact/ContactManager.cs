@@ -24,12 +24,12 @@ namespace BusinessLogic.Contact
 
         public List<MeetingsDTO.Contact> GetContacts()
         {
-            return manager.GetContacts();
+            return Manager.GetContacts();
         }
 
         public void SaveContact(MeetingsDTO.Contact contact)
         {
-
+            Manager.AddContact(contact);
         }
     }
 }

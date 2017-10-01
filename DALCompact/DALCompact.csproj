@@ -57,6 +57,7 @@
     <Compile Include="Meeting.cs">
       <DependentUpon>MeetingsLocalModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MeetingsLocalEntities.cs" />
     <Compile Include="MeetingsLocalModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

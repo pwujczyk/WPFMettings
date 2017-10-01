@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.Contact;
 using BusinessLogic.Meeting;
+using MeetingsDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin
             return manager.GetContacts();
         }
 
-        public void SaveContact()
+        public void SaveContact(Contact contact)
         {
-
+            manager.SaveContact(contact);
         }
     }
 }

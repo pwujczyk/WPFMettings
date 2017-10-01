@@ -5,16 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using WPFRibbonWorkplaceContracts;
 
-namespace WPFMeetingsWorkplacePlugin.Functions
+namespace WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin.Functions
 {
-    class New : BaseFunction, IFunction
+    class LoadMeetings : BaseFunction, IFunction
     {
+        private const string NewName = "LoadMeetings";
+        private const string NewSection = "Contact";
+        private const string NewTab = "Contact";
 
-        private const string NewName = "New";
-        private const string NewSection = "Basic";
-        private const string NewTab = "Basic";
-
-        MetingsMainWindowVM VM;
+        Type type;
 
         string IFunction.FunctionName
         {
@@ -40,16 +39,16 @@ namespace WPFMeetingsWorkplacePlugin.Functions
             }
         }
 
-        public New(MetingsMainWindowVM vm)
+        public LoadMeetings(Type userControl)
         {
-            VM = vm;
+            type = userControl;
         }
 
         void IFunction.Method()
         {
+            var x = Activator.CreateInstance(type) as IPlugin;
+            this.LoadPlugin(x);
 
-            VM.AddNew();
-            VM.ClearFields();
         }
     }
 }

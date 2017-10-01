@@ -7,3 +7,4 @@ artifacts/
 *.user
 *.suo
 out/
+/out/*.dll

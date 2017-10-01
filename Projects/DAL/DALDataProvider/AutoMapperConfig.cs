@@ -30,6 +30,10 @@ namespace DALDataProvider
                 cfg.CreateMap<MeetingsDTO.Meeting, DALServer.Meeting>();
 
                 cfg.CreateMap<DALServer.Contact, MeetingsDTO.Contact>();
+                cfg.CreateMap<DALCompact.Contact, MeetingsDTO.Contact>();
+
+                cfg.CreateMap<MeetingsDTO.Contact,DALServer.Contact>();
+                cfg.CreateMap<MeetingsDTO.Contact,DALCompact.Contact>();
 
             });
         }

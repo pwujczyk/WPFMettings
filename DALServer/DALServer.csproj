@@ -73,6 +73,7 @@
       <DependentUpon>MeetingsServerModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WPFMeetingsEntities.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="MeetingsServerModel.edmx">

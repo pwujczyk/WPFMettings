@@ -54,19 +54,23 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Functions\LoadContacts.cs" />
-    <Compile Include="Functions\Save.cs" />
-    <Compile Include="Functions\New.cs" />
-    <Compile Include="MeetingsMainWindow.xaml.cs">
-      <DependentUpon>MeetingsMainWindow.xaml</DependentUpon>
+    <Compile Include="Arch\RelayCommand.cs" />
+    <Compile Include="Plugins\MeetingPlugin\Functions\LoadContacts.cs" />
+    <Compile Include="Plugins\MeetingPlugin\Functions\Save.cs" />
+    <Compile Include="Plugins\MeetingPlugin\Functions\New.cs" />
+    <Compile Include="Plugins\MeetingPlugin\Meetings.xaml.cs">
+      <DependentUpon>Meetings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MetingsMainWindowBM.cs" />
-    <Compile Include="MetingsMainWindowVM.cs" />
+    <Compile Include="Plugins\MeetingPlugin\MetingsBM.cs" />
+    <Compile Include="Plugins\MeetingPlugin\MetingsVM.cs" />
     <Compile Include="Plugins\ContactsPlugin\Contacts.xaml.cs">
       <DependentUpon>Contacts.xaml</DependentUpon>
     </Compile>
     <Compile Include="Plugins\ContactsPlugin\ContactsBM.cs" />
     <Compile Include="Plugins\ContactsPlugin\ContactsVM.cs" />
+    <Compile Include="Plugins\ContactsPlugin\Functions\LoadMeetings.cs" />
+    <Compile Include="Plugins\ContactsPlugin\Functions\New.cs" />
+    <Compile Include="Plugins\ContactsPlugin\Functions\Save.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -95,7 +99,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MeetingsMainWindow.xaml">
+    <Page Include="Plugins\MeetingPlugin\Meetings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -118,6 +122,7 @@
       <Name>BusinessLogic</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

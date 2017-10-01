@@ -6,12 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPFMeetingsWorkplacePlugin
+namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
 {
-    class MetingsMainWindowBM
+    class MeetingsManager
     {
         MeetingManager manager = new MeetingManager();
-        public MetingsMainWindowBM()
+        public MeetingsManager()
         {
             UpdateDatabase();
         }

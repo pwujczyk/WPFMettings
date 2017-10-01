@@ -14,22 +14,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPFMeetingsWorkplacePlugin.Functions;
-using WPFMeetingsWorkplacePlugin.Plugins;
+using WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin;
+using WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Functions;
 using WPFRibbonWorkplaceContracts;
 
-namespace WPFMeetingsWorkplacePlugin
+namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
 {
     /// <summary>
     /// Interaction logic for MeetingsMainWindow.xaml
     /// </summary>
-    public partial class MeetingsMainWindow : UserControl, IPluginMainWindow
+    public partial class Meetings : UserControl, IPluginMainWindow
     {
-        MetingsMainWindowVM VM;
-        public MeetingsMainWindow()
+        MetingsVM VM;
+        public Meetings()
         {
             InitializeComponent();
-            VM = new WPFMeetingsWorkplacePlugin.MetingsMainWindowVM();
+            VM = new MetingsVM();
             this.DataContext = VM;
         }
 
@@ -40,7 +40,7 @@ namespace WPFMeetingsWorkplacePlugin
                 var list = new List<IFunction>();
                 list.Add(new Save(this.VM));
                 list.Add(new New(this.VM));
-                list.Add(new LoadContacts(new Contacts()));
+                list.Add(new LoadContacts(typeof(Contacts)));
                 return list;
             }
         }
