@@ -5,6 +5,7 @@ using DALServer;
 using MeetingsDTO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -142,21 +143,16 @@ namespace DALDataProvider
         public List<MeetingsDTO.Meeting> GetCompactMeetings()
         {
             List<MeetingsDTO.Meeting> meetings = new List<MeetingsDTO.Meeting>();
-
+            IMapper Mapper = new Mapper(AutoMapperConfig.Configuration);
             //   MeetingsLocalContext meetinglocal = new MeetingsLocalContext();
             try
             {
                 var compactmeetings = LocalContext.Meeting.ToList();
                 foreach (var item in compactmeetings)
                 {
-                    meetings.Add(new MeetingsDTO.Meeting()
-                    {
-                        AfterNotes = item.AfterNotes,
-                        BeforeNotes = item.BeforeNotes,
-                        Date = item.Date,
-                        DuringNotes = item.DuringNotes,
-                        MeetingId = item.MeetingId
-                    });
+                    MeetingsDTO.Meeting meeting = Mapper.Map<DALCompact.Meeting, MeetingsDTO.Meeting>(item);
+                    meeting.Contacts = new ObservableCollection<MeetingsDTO.Contact>(Mapper.Map<ICollection<DALCompact.Contact>, List<MeetingsDTO.Contact>>(item.Contact));
+                    meetings.Add(meeting);
                 }
             }
             catch (Exception erx)
@@ -170,7 +166,7 @@ namespace DALDataProvider
         }
 
 
-        public void AddMeeting(MeetingsDTO.Meeting input)
+        public void SaveMeeting(MeetingsDTO.Meeting input)
         {
             IMapper Mapper = new Mapper(AutoMapperConfig.Configuration);
             DALCompact.Meeting compactMeeting;
@@ -189,9 +185,16 @@ namespace DALDataProvider
                 compactMeeting = LocalContext.Meeting.Single(x => x.MeetingId == input.MeetingId);
                 serverMeeting = ServerContext.Meeting.Single(x => x.MeetingId == input.MeetingId);
                 Mapper.Map<MeetingsDTO.Meeting, DALCompact.Meeting>(input, compactMeeting);
-                //compactMeeting = Mapper.Map<DALCompact.Meeting>(input);
                 Mapper.Map<MeetingsDTO.Meeting, DALServer.Meeting>(input, serverMeeting);
-                //serverMeeting = Mapper.Map<DALServer.Meeting>(input);
+
+                foreach (var item in input.Contacts)
+                {
+                    var contactLocal = LocalContext.Contact.Single(x => x.ContactId == item.ContactId);
+                    compactMeeting.Contact.Add(contactLocal);
+
+                    var contactServer = ServerContext.Contact.Single(x => x.ContactId == item.ContactId);
+                    serverMeeting.Contact.Add(contactServer);
+                }
             }           
             LocalContext.SaveChanges();
             ServerContext.SaveChanges();
@@ -216,6 +219,7 @@ namespace DALDataProvider
                 serverContact = ServerContext.Contact.Single(x => x.ContactId == contact.ContactId);
                 Mapper.Map<MeetingsDTO.Contact, DALCompact.Contact>(contact, compactContact);
                 Mapper.Map<MeetingsDTO.Contact, DALServer.Contact>(contact, serverContact);
+                
             }
             
             LocalContext.SaveChanges();

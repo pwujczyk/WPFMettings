@@ -8,6 +8,7 @@
         <EntityTypeShape EntityType="MeetingsLocalModel.Meeting" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="MeetingsLocalModel.Contact" Width="1.5" PointX="3.75" PointY="0.75" />
         <EntityTypeShape EntityType="MeetingsLocalModel.DBUp" Width="1.5" PointX="0.75" PointY="3.75" />
+        <AssociationConnector Association="MeetingsLocalModel.MeetingsContacts" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

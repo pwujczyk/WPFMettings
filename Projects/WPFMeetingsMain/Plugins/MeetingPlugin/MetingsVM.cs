@@ -1,6 +1,7 @@
 ﻿using MeetingsDTO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
 {
     public class MetingsVM : VMBase, INotifyPropertyChanged
     {
-        
+
         public MetingsVM()
         {
             this.AddContact = new RelayCommand(AddContactRelay);
@@ -23,8 +24,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
 
         public ICommand AddContact { get; set; }
 
-        List<Meeting> meetings;
-
+        
         List<Contact> contacts;
         public List<Contact> Contacts
         {
@@ -53,16 +53,22 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
             }
         }
 
-        public List<Meeting> Meetings
+        ObservableCollection<Meeting> meetings;
+        public ObservableCollection<Meeting> Meetings
         {
             get
             {
                 if (meetings == null)
                 {
-                    this.meetings = GetMeetings();
+                    ReloadMeetings();
                 }
                 return this.meetings;
             }
+        }
+
+        private void ReloadMeetings()
+        {
+            this.meetings = new ObservableCollection<Meeting>(GetMeetings());
         }
 
         private Meeting selectedMeeting;
@@ -99,6 +105,10 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
 
         public void SaveMeeting()
         {
+            if (!SelectedMeeting.MeetingId.HasValue)
+            {
+                ReloadMeetings();
+            }
             this.Model.SaveMeeting(SelectedMeeting);
         }
 
@@ -108,6 +118,11 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
             {
                 this.SelectedMeeting.Contacts.Add(this.SelectedContact);
             }
+        }
+
+        public void DeleteMeeting()
+        {
+            this.Model.DeleteMeeting(SelectedMeeting);
         }
     }
 }

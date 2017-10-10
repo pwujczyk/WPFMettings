@@ -8,6 +8,7 @@
         <EntityTypeShape EntityType="WPFMeetingsModel.Meeting" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WPFMeetingsModel.DBUp" Width="1.5" PointX="3.75" PointY="0.75" />
         <EntityTypeShape EntityType="WPFMeetingsModel.Contact" Width="1.5" PointX="0.75" PointY="3.75" />
+        <AssociationConnector Association="WPFMeetingsModel.MeetingsContacts1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

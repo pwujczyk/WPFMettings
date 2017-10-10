@@ -14,10 +14,18 @@ namespace DALCompact
     
     public partial class Meeting
     {
+        public Meeting()
+        {
+            this.Contact = new HashSet<Contact>();
+        }
+    
         public int MeetingId { get; set; }
         public System.DateTime Date { get; set; }
         public string BeforeNotes { get; set; }
         public string DuringNotes { get; set; }
         public string AfterNotes { get; set; }
+        public string Subject { get; set; }
+    
+        public virtual ICollection<Contact> Contact { get; set; }
     }
 }

@@ -14,9 +14,16 @@ namespace DALServer
     
     public partial class Contact
     {
+        public Contact()
+        {
+            this.Meeting = new HashSet<Meeting>();
+        }
+    
         public int ContactId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+    
+        public virtual ICollection<Meeting> Meeting { get; set; }
     }
 }

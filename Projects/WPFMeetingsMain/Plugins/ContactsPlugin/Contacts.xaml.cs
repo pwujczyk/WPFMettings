@@ -57,6 +57,5 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin
         {
             this.VM.SelectedContact = (Contact)e.NewValue;
         }
-
     }
 }

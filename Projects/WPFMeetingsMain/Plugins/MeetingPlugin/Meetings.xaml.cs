@@ -40,6 +40,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
                 var list = new List<IFunction>();
                 list.Add(new Save(this.VM));
                 list.Add(new New(this.VM));
+                list.Add(new Delete(this.VM));
                 list.Add(new LoadContacts(typeof(Contacts)));
                 return list;
             }

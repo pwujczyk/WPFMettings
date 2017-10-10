@@ -1,6 +1,7 @@
 ﻿using MeetingsDTO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -13,14 +14,14 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin
         
         private ContactsBM model = new ContactsBM();
 
-        List<Contact> contacts;
-        public List<Contact> Contacts
+        ObservableCollection<Contact> contacts;
+        public ObservableCollection<Contact> Contacts
         {
             get
             {
                 if (contacts==null)
                 {
-                    this.contacts = model.GetContacts();
+                    this.contacts = new ObservableCollection<Contact>(model.GetContacts());
                 }
                 return contacts;
             }
@@ -31,6 +32,10 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin
         {
             get
             {
+                if (selectedContact==null)
+                {
+                    selectedContact = this.Contacts.First();
+                }
                 return selectedContact;
             }
             set
@@ -50,6 +55,13 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin
         internal void Save()
         {
             model.SaveContact(this.SelectedContact);
+            ReloadContacts();
+        }
+
+        private void ReloadContacts()
+        {
+            this.contacts= new ObservableCollection<Contact>(model.GetContacts());
+            NotifyPropertyChanged(nameof(Contacts));
         }
     }
 }

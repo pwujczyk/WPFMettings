@@ -31,11 +31,53 @@
           <Property Name="BeforeNotes" Type="ntext" />
           <Property Name="DuringNotes" Type="ntext" />
           <Property Name="AfterNotes" Type="ntext" />
+          <Property Name="Subject" Type="ntext" />
         </EntityType>
+        <EntityType Name="MeetingsContacts">
+          <Key>
+            <PropertyRef Name="MeetingId" />
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="MeetingId" Type="int" Nullable="false" />
+          <Property Name="ContactId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_MeetingContact_Contact">
+          <End Role="Contact" Type="Self.Contact" Multiplicity="1" />
+          <End Role="MeetingsContacts" Type="Self.MeetingsContacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="MeetingsContacts">
+              <PropertyRef Name="ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MeetingContact_Meeting">
+          <End Role="Meeting" Type="Self.Meeting" Multiplicity="1" />
+          <End Role="MeetingsContacts" Type="Self.MeetingsContacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meeting">
+              <PropertyRef Name="MeetingId" />
+            </Principal>
+            <Dependent Role="MeetingsContacts">
+              <PropertyRef Name="MeetingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="WPFMeetingsModelStoreContainer">
           <EntitySet Name="DBUp" EntityType="Self.DBUp" Schema="adm" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Meeting" EntityType="Self.Meeting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MeetingsContacts" EntityType="Self.MeetingsContacts" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_MeetingContact_Contact" Association="Self.FK_MeetingContact_Contact">
+            <End Role="Contact" EntitySet="Contact" />
+            <End Role="MeetingsContacts" EntitySet="MeetingsContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MeetingContact_Meeting" Association="Self.FK_MeetingContact_Meeting">
+            <End Role="Meeting" EntitySet="Meeting" />
+            <End Role="MeetingsContacts" EntitySet="MeetingsContacts" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -50,11 +92,17 @@
           <Property Name="BeforeNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DuringNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AfterNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contact" Relationship="WPFMeetingsModel.MeetingsContacts1" FromRole="Meeting" ToRole="Contact" />
+          <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="WPFMeetingsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Meeting" EntityType="Self.Meeting" />
           <EntitySet Name="DBUp" EntityType="WPFMeetingsModel.DBUp" />
           <EntitySet Name="Contact" EntityType="WPFMeetingsModel.Contact" />
+          <AssociationSet Name="MeetingsContacts1" Association="WPFMeetingsModel.MeetingsContacts1">
+            <End Role="Contact" EntitySet="Contact" />
+            <End Role="Meeting" EntitySet="Meeting" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="DBUp">
           <Key>
@@ -72,7 +120,12 @@
           <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Meeting" Relationship="WPFMeetingsModel.MeetingsContacts1" FromRole="Contact" ToRole="Meeting" />
         </EntityType>
+        <Association Name="MeetingsContacts1">
+          <End Type="WPFMeetingsModel.Contact" Role="Contact" Multiplicity="*" />
+          <End Type="WPFMeetingsModel.Meeting" Role="Meeting" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -82,6 +135,7 @@
           <EntitySetMapping Name="Meeting">
             <EntityTypeMapping TypeName="WPFMeetingsModel.Meeting">
               <MappingFragment StoreEntitySet="Meeting">
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="MeetingId" ColumnName="MeetingId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="BeforeNotes" ColumnName="BeforeNotes" />
@@ -109,6 +163,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="MeetingsContacts1" TypeName="WPFMeetingsModel.MeetingsContacts1" StoreEntitySet="MeetingsContacts">
+            <EndProperty Name="Meeting">
+              <ScalarProperty Name="MeetingId" ColumnName="MeetingId" />
+            </EndProperty>
+            <EndProperty Name="Contact">
+              <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

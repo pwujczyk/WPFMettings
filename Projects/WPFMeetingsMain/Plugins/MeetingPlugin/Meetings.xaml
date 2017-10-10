@@ -15,6 +15,7 @@
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
+            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -24,7 +25,7 @@
         <TreeView Grid.Column="0" Grid.Row="0" Grid.RowSpan="100" x:Name="tvMeetings" SelectedItemChanged="tvMeetings_SelectedItemChanged" ItemsSource="{Binding Meetings}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TreeView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding DateFormated, Mode=OneWay}" FontWeight="Bold"  />
+                    <TextBlock Text="{Binding MeetingTitle, Mode=OneWay}" FontWeight="Bold"  />
                 </DataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
@@ -52,12 +53,13 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <Label Content="Before Notes" Grid.Column="1" Grid.Row="2"></Label>
-        <TextBox x:Name="txtBeforeNotes" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"  TextWrapping="Wrap" Text="{Binding SelectedMeeting.BeforeNotes}" VerticalAlignment="Stretch" AcceptsReturn="True" />
-        <Label Content="During Notes" Grid.Column="1" Grid.Row="4"></Label>
-        <TextBox x:Name="txtDuringNotes" Grid.Column="1" Grid.Row="5"  HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding SelectedMeeting.DuringNotes}" VerticalAlignment="Stretch" AcceptsReturn="True" />
-        <Label Content="After Notes" Grid.Column="1" Grid.Row="6"></Label>
-        <TextBox x:Name="txtAfterNotes"  Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding SelectedMeeting.AfterNotes}" VerticalAlignment="Stretch" AcceptsReturn="True" />
+        <TextBox Grid.Row="2" Grid.Column="1" Name="txtSubject" Text="{Binding SelectedMeeting.Subject}" ></TextBox>
+        <Label Content="Before Notes" Grid.Column="1" Grid.Row="3"></Label>
+        <TextBox x:Name="txtBeforeNotes" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch"  TextWrapping="Wrap" Text="{Binding SelectedMeeting.BeforeNotes}" VerticalAlignment="Stretch" AcceptsReturn="True" />
+        <Label Content="During Notes" Grid.Column="1" Grid.Row="5"></Label>
+        <TextBox x:Name="txtDuringNotes" Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding SelectedMeeting.DuringNotes}" VerticalAlignment="Stretch" AcceptsReturn="True" />
+        <Label Content="After Notes" Grid.Column="1" Grid.Row="7"></Label>
+        <TextBox x:Name="txtAfterNotes"  Grid.Column="1" Grid.Row="8" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding SelectedMeeting.AfterNotes}" VerticalAlignment="Stretch" AcceptsReturn="True" />
 
     </Grid>
 </UserControl>

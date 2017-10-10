@@ -16,12 +16,21 @@ namespace MeetingsDTO
         public string DuringNotes { get; set; }
         public string AfterNotes { get; set; }
         public ObservableCollection<Contact> Contacts { get; set; }
+        public string Subject { get; set; }
 
-        public string DateFormated
+        private string DateFormated
         {
             get
             {
                 return this.Date.ToString("yyy-MM-dd hh:mm");
+            }
+        }
+
+        public string MeetingTitle
+        {
+            get
+            {
+                return string.Format($"{DateFormated} [{Subject}]");
             }
         }
 

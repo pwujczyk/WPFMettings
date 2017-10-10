@@ -31,5 +31,10 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
         {
             manager.SaveMeeting(meeting);
         }
+
+        internal void DeleteMeeting(Meeting selectedMeeting)
+        {
+            //manager
+        }
     }
 }
