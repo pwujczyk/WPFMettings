@@ -4,15 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{800EBF50-A730-4067-872B-401F82B0AF49}</ProjectGuid>
+    <ProjectGuid>{49C6115D-0680-4005-9C6E-65C2C7DBB701}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DALDataProvider</RootNamespace>
-    <AssemblyName>DALDataProvider</AssemblyName>
+    <RootNamespace>DALServerProvider</RootNamespace>
+    <AssemblyName>DALServerProvider</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,45 +50,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DALDataManager.cs" />
+    <Compile Include="AutoMapperConfig.cs" />
+    <Compile Include="ServerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\ConnectionStringHelper\ConnectionStringHelper\ConnectionStringHelper.csproj">
-      <Project>{13c687e5-893e-4489-8eb6-fc7c443efcc8}</Project>
+      <Project>{13C687E5-893E-4489-8EB6-FC7C443EFCC8}</Project>
       <Name>ConnectionStringHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DALContracts\DALContracts.csproj">
+      <Project>{88624aa2-898b-4f1c-9f3c-7a377ff91fb0}</Project>
+      <Name>DALContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DALServer\DALServer.csproj">
+      <Project>{a6d975fb-eef6-4cbb-a8a9-a166ac06f46f}</Project>
+      <Name>DALServer</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\MeetingsDTO\MeetingsDTO.csproj">
       <Project>{cdf2d03c-b19f-4101-8bab-e71cd8904d82}</Project>
       <Name>MeetingsDTO</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Tools\Tools.csproj">
-      <Project>{41325001-17c5-4d16-8e6c-75f38eaa1a26}</Project>
+      <Project>{41325001-17C5-4D16-8E6C-75F38EAA1A26}</Project>
       <Name>Tools</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DALCompactProvider\DALCompactProvider.csproj">
-      <Project>{e765c68c-ba02-4fda-968e-368b0c0f2aea}</Project>
-      <Name>DALCompactProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DALContracts\DALContracts.csproj">
-      <Project>{88624aa2-898b-4f1c-9f3c-7a377ff91fb0}</Project>
-      <Name>DALContracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DALServerProvider\DALServerProvider.csproj">
-      <Project>{49c6115d-0680-4005-9c6e-65c2c7dbb701}</Project>
-      <Name>DALServerProvider</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

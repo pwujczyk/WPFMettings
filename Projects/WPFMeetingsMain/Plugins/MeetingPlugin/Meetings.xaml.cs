@@ -41,6 +41,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
                 list.Add(new Save(this.VM));
                 list.Add(new New(this.VM));
                 list.Add(new Delete(this.VM));
+                list.Add(new Bullet(this.VM));
                 list.Add(new LoadContacts(typeof(Contacts)));
                 return list;
             }
@@ -57,6 +58,17 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
             {
                 return true;
             }
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            TextRange textRange = new TextRange(
+       txtBeforeNotesXaml.Document.ContentStart,
+       txtBeforeNotesXaml.Document.ContentEnd
+   );
+           var x= textRange.Text;
+
+
         }
     }
 }

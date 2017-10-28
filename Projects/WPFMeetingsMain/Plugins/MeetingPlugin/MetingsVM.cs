@@ -65,10 +65,16 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
                 return this.meetings;
             }
         }
+        
+        public bool SelectedText
+        {
+            get;set;
+        }
 
         private void ReloadMeetings()
         {
             this.meetings = new ObservableCollection<Meeting>(GetMeetings());
+            NotifyPropertyChanged("Meetings");
         }
 
         private Meeting selectedMeeting;
@@ -82,6 +88,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
             {
                 this.selectedMeeting = value;
                 NotifyPropertyChanged("SelectedMeeting");
+                
             }
         }
 
@@ -90,6 +97,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
             Meeting m = new Meeting(true);
             this.Meetings.Add(m);
             this.SelectedMeeting = m;
+            NotifyPropertyChanged("Meetings");
         }
 
         private List<Meeting> GetMeetings()
@@ -105,11 +113,14 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
 
         public void SaveMeeting()
         {
+            NotifyPropertyChanged("SelectedMeeting");
+            NotifyPropertyChanged("TextRawProperty");
+            var x = SelectedMeeting.DuringNotes;
+            this.Model.SaveMeeting(SelectedMeeting);
             if (!SelectedMeeting.MeetingId.HasValue)
             {
                 ReloadMeetings();
             }
-            this.Model.SaveMeeting(SelectedMeeting);
         }
 
         private void AddContactRelay(object obj)
@@ -123,6 +134,13 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
         public void DeleteMeeting()
         {
             this.Model.DeleteMeeting(SelectedMeeting);
+            ReloadMeetings();
+        }
+        
+        public void Bullet()
+        {
+            this.SelectedText = true;
+            NotifyPropertyChanged("SelectedText");
         }
     }
 }

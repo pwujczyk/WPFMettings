@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DALDataProvider
+namespace DALServerProvider
 {
     public static class AutoMapperConfig
     {
@@ -26,18 +26,14 @@ namespace DALDataProvider
         {
             configuration = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<MeetingsDTO.Meeting, DALCompact.Meeting>();
                 cfg.CreateMap<MeetingsDTO.Meeting, DALServer.Meeting>();
 
-                cfg.CreateMap<DALCompact.Meeting, MeetingsDTO.Meeting>();
                 cfg.CreateMap<DALServer.Meeting, MeetingsDTO.Meeting>();
 
 
                 cfg.CreateMap<DALServer.Contact, MeetingsDTO.Contact>();
-                cfg.CreateMap<DALCompact.Contact, MeetingsDTO.Contact>();
 
-                cfg.CreateMap<MeetingsDTO.Contact,DALServer.Contact>();
-                cfg.CreateMap<MeetingsDTO.Contact,DALCompact.Contact>();
+                cfg.CreateMap<MeetingsDTO.Contact, DALServer.Contact>();
 
             });
         }

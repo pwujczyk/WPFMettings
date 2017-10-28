@@ -20,7 +20,7 @@ namespace DALCompactScripts
             Console.WriteLine("SqlServer");
             var initConnectionString = ConnectionStringHelper.ConnectionString.GetSQLDataSourceInitial(dataSource);
             databaseUpdate.CreateSQLDB(databasesName, initConnectionString);
-            var connectionstring = ConnectionStringHelper.ConnectionString.GetSqlConnectionString(dataSource, databasesName);
+            var connectionstring = ConnectionStringHelper.ConnectionString.GetSqlServerConnectionString(dataSource, databasesName);
             databaseUpdate.CreateAdmSchema(connectionstring);
             databaseUpdate.UpdateDatabase(assembly, connectionstring);
 

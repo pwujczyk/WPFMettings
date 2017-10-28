@@ -25,6 +25,9 @@ namespace DALCompact
         public string DuringNotes { get; set; }
         public string AfterNotes { get; set; }
         public string Subject { get; set; }
+        public string BeforeNotesXaml { get; set; }
+        public string DuringNotesXaml { get; set; }
+        public string AfterNotesXaml { get; set; }
     
         public virtual ICollection<Contact> Contact { get; set; }
     }

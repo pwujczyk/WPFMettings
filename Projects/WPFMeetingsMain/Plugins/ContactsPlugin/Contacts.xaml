@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid Margin="0,0,-187,-998">
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -22,7 +22,7 @@
         <TreeView Grid.Column="0" Grid.Row="0" Grid.RowSpan="100" Name="tvContact"  ItemsSource="{Binding Contacts}" SelectedItemChanged="TreeView_SelectedItemChanged" >
             <TreeView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding Name, Mode=OneWay}" FontWeight="Bold"  />
+                    <TextBlock Text="{Binding Name, Mode=OneWay}" FontWeight="Bold" FontSize="10"  TextWrapping="Wrap" MaxHeight="10" LineStackingStrategy="BlockLineHeight"   LineHeight="10" TextTrimming="WordEllipsis"  />
                 </DataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>

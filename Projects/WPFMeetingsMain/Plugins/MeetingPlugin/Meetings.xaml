@@ -1,4 +1,6 @@
-﻿<UserControl x:Class="WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Meetings"
+﻿<UserControl xmlns:WPFControls="clr-namespace:WPFControls;assembly=WPFControls"   
+           
+             x:Class="WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Meetings"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,9 +8,11 @@
              xmlns:local="clr-namespace:WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin"
              mc:Ignorable="d" 
              d:DesignHeight="291.826" d:DesignWidth="564.85">
+    <!--xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"-->
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="5"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -25,13 +29,13 @@
         <TreeView Grid.Column="0" Grid.Row="0" Grid.RowSpan="100" x:Name="tvMeetings" SelectedItemChanged="tvMeetings_SelectedItemChanged" ItemsSource="{Binding Meetings}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TreeView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding MeetingTitle, Mode=OneWay}" FontWeight="Bold"  />
+                    <TextBlock Text="{Binding MeetingTitle, Mode=OneWay}" FontWeight="Bold" />
                 </DataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
-        <StackPanel Grid.Column="1" Orientation="Horizontal">
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+        <StackPanel Grid.Column="2" Orientation="Horizontal">
             <DatePicker Name="txtDate"  HorizontalAlignment="Left" SelectedDate="{Binding SelectedMeeting.Date, Mode=TwoWay}"  VerticalAlignment="Top"  />
-
             <ComboBox x:Name="comboBox" ItemsSource="{Binding Contacts}" SelectedItem="{Binding SelectedContact}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -41,7 +45,7 @@
             </ComboBox>
             <Button Width="100"  Command="{Binding AddContact}" />
         </StackPanel>
-        <ItemsControl Grid.Column="1" Grid.Row="1" ItemsSource="{Binding SelectedMeeting.Contacts}" >
+        <ItemsControl Grid.Column="2" Grid.Row="1" ItemsSource="{Binding SelectedMeeting.Contacts}" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"/>
@@ -53,13 +57,48 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-        <TextBox Grid.Row="2" Grid.Column="1" Name="txtSubject" Text="{Binding SelectedMeeting.Subject}" ></TextBox>
-        <Label Content="Before Notes" Grid.Column="1" Grid.Row="3"></Label>
-        <TextBox x:Name="txtBeforeNotes" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch"  TextWrapping="Wrap" Text="{Binding SelectedMeeting.BeforeNotes}" VerticalAlignment="Stretch" AcceptsReturn="True" />
-        <Label Content="During Notes" Grid.Column="1" Grid.Row="5"></Label>
-        <TextBox x:Name="txtDuringNotes" Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding SelectedMeeting.DuringNotes}" VerticalAlignment="Stretch" AcceptsReturn="True" />
-        <Label Content="After Notes" Grid.Column="1" Grid.Row="7"></Label>
-        <TextBox x:Name="txtAfterNotes"  Grid.Column="1" Grid.Row="8" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding SelectedMeeting.AfterNotes}" VerticalAlignment="Stretch" AcceptsReturn="True" />
+        <TextBox  Grid.Column="2" Grid.Row="2" Name="txtSubject" Text="{Binding SelectedMeeting.Subject}" ></TextBox>
+        <Label Content="Before Notes" Grid.Column="2" Grid.Row="3"></Label>
 
+        <WPFControls:RichTextBox Grid.Row="4" Grid.Column="2" Name="txtBeforeNotesXaml"  Text="{Binding SelectedMeeting.BeforeNotesXaml}" >
+            <WPFControls:RichTextBox.TextFormatter>
+                <WPFControls:PWXamlFormatter />
+            </WPFControls:RichTextBox.TextFormatter>
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+            </RichTextBox.Resources>
+        </WPFControls:RichTextBox>
+
+        <Label Content="During Notes" Grid.Column="2" Grid.Row="5"></Label>
+        <!--<TextBox Width="200"  x:Name="txtDuringNotes" Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding SelectedMeeting.DuringNotes}"  AcceptsReturn="True" />-->
+        <WPFControls:RichTextBox Grid.Row="6" Grid.Column="2" Name="txtDuringNotesXaml" HorizontalAlignment="Stretch"
+                          Text="{Binding SelectedMeeting.DuringNotesXaml}" SpellCheck.IsEnabled="True" xml:lang="pl-PL" 
+                                 SelectedText="{Binding SelectedText}" >
+            <WPFControls:RichTextBox.TextFormatter>
+                <WPFControls:PWXamlFormatter />
+            </WPFControls:RichTextBox.TextFormatter>
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+            </RichTextBox.Resources>
+        </WPFControls:RichTextBox>
+        <!--<TextBox x:Name="txtDuringNotes" Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding SelectedMeeting.DuringNotes}" VerticalAlignment="Stretch" AcceptsReturn="True" />-->
+        <Label Content="After Notes" Grid.Column="2" Grid.Row="7"></Label>
+        <WPFControls:RichTextBox Grid.Row="8" Grid.Column="2" Name="txtAfterNotesXaml"  Text="{Binding SelectedMeeting.AfterNotesXaml,Delay=20}" 
+                          SpellCheck.IsEnabled="True" xml:lang="pl-PL"
+                                 SelectedText="{Binding SelectedText}">
+            <WPFControls:RichTextBox.TextFormatter>
+                <WPFControls:PWXamlFormatter />
+            </WPFControls:RichTextBox.TextFormatter>
+            <RichTextBox.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0"/>
+                </Style>
+            </RichTextBox.Resources>
+        </WPFControls:RichTextBox>
+        <Button x:Name="button" Content="Button" Grid.Column="2" HorizontalAlignment="Left" Margin="336,25,-46,0" Grid.Row="8" VerticalAlignment="Top" Width="75" Click="button_Click"/>
     </Grid>
 </UserControl>

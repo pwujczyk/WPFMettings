@@ -4,15 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{800EBF50-A730-4067-872B-401F82B0AF49}</ProjectGuid>
+    <ProjectGuid>{A6D975FB-EEF6-4CBB-A8A9-A166AC06F46F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DALDataProvider</RootNamespace>
-    <AssemblyName>DALDataProvider</AssemblyName>
+    <RootNamespace>DALServer</RootNamespace>
+    <AssemblyName>DALServer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,18 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,45 +48,62 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DALDataManager.cs" />
+    <Compile Include="Contact.cs">
+      <DependentUpon>MeetingsServerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBUp.cs">
+      <DependentUpon>MeetingsServerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Meeting.cs">
+      <DependentUpon>MeetingsServerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MeetingsServerModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MeetingsServerModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MeetingsServerModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MeetingsServerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MeetingsServerModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MeetingsServerModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WPFMeetingsEntities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\ConnectionStringHelper\ConnectionStringHelper\ConnectionStringHelper.csproj">
-      <Project>{13c687e5-893e-4489-8eb6-fc7c443efcc8}</Project>
-      <Name>ConnectionStringHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\MeetingsDTO\MeetingsDTO.csproj">
-      <Project>{cdf2d03c-b19f-4101-8bab-e71cd8904d82}</Project>
-      <Name>MeetingsDTO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Tools\Tools.csproj">
-      <Project>{41325001-17c5-4d16-8e6c-75f38eaa1a26}</Project>
-      <Name>Tools</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DALCompactProvider\DALCompactProvider.csproj">
-      <Project>{e765c68c-ba02-4fda-968e-368b0c0f2aea}</Project>
-      <Name>DALCompactProvider</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DALContracts\DALContracts.csproj">
-      <Project>{88624aa2-898b-4f1c-9f3c-7a377ff91fb0}</Project>
-      <Name>DALContracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DALServerProvider\DALServerProvider.csproj">
-      <Project>{49c6115d-0680-4005-9c6e-65c2c7dbb701}</Project>
-      <Name>DALServerProvider</Name>
-    </ProjectReference>
+    <EntityDeploy Include="MeetingsServerModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MeetingsServerModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.Config" />
+    <None Include="MeetingsServerModel.edmx.diagram">
+      <DependentUpon>MeetingsServerModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="MeetingsServerModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MeetingsServerModel.Context.cs</LastGenOutput>
+      <DependentUpon>MeetingsServerModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="MeetingsServerModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MeetingsServerModel.edmx</DependentUpon>
+      <LastGenOutput>MeetingsServerModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

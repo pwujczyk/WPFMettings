@@ -10,7 +10,7 @@ namespace BusinessLogic.Meeting
 {
     public class MeetingManager
     {
-        //DALDataManager dataManager = new DALDataManager();
+        DALDataManager dataManager = new DALDataManager();
 
         public void UpdateDatabase()
         {
@@ -19,7 +19,7 @@ namespace BusinessLogic.Meeting
 
         public List<MeetingsDTO.Meeting> GetMeetings()
         {
-            DALDataManager dataManager = new DALDataManager();
+           // DALDataManager dataManager = new DALDataManager();
             //return dataManager.GetMeetings();
              return dataManager.GetCompactMeetings();
             return null;
@@ -27,12 +27,24 @@ namespace BusinessLogic.Meeting
 
         public void SaveMeeting(MeetingsDTO.Meeting meeting)
         {
-            DALDataManager dataManager = new DALDataManager();
+          //  DALDataManager dataManager = new DALDataManager();
             dataManager.SaveMeeting(meeting);
             
             //dataManager.AddMeeting(meeting);
         }
 
-        
+        public void DeleteMeeting(int? meetingId)
+        {
+            if (meetingId.HasValue)
+            {
+                dataManager.DeleteMeeting(meetingId.Value);
+
+            }
+        }
+
+        public void DeleteMeeting(int value)
+        {
+
+        }
     }
 }

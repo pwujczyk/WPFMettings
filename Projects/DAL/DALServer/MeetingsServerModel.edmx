@@ -32,6 +32,9 @@
           <Property Name="DuringNotes" Type="ntext" />
           <Property Name="AfterNotes" Type="ntext" />
           <Property Name="Subject" Type="ntext" />
+          <Property Name="BeforeNotesXaml" Type="ntext" />
+          <Property Name="DuringNotesXaml" Type="ntext" />
+          <Property Name="AfterNotesXaml" Type="ntext" />
         </EntityType>
         <EntityType Name="MeetingsContacts">
           <Key>
@@ -94,6 +97,9 @@
           <Property Name="AfterNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Contact" Relationship="WPFMeetingsModel.MeetingsContacts1" FromRole="Meeting" ToRole="Contact" />
           <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BeforeNotesXaml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DuringNotesXaml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AfterNotesXaml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="WPFMeetingsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Meeting" EntityType="Self.Meeting" />
@@ -135,6 +141,9 @@
           <EntitySetMapping Name="Meeting">
             <EntityTypeMapping TypeName="WPFMeetingsModel.Meeting">
               <MappingFragment StoreEntitySet="Meeting">
+                <ScalarProperty Name="AfterNotesXaml" ColumnName="AfterNotesXaml" />
+                <ScalarProperty Name="DuringNotesXaml" ColumnName="DuringNotesXaml" />
+                <ScalarProperty Name="BeforeNotesXaml" ColumnName="BeforeNotesXaml" />
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="MeetingId" ColumnName="MeetingId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />

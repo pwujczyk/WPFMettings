@@ -34,7 +34,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
 
         internal void DeleteMeeting(Meeting selectedMeeting)
         {
-            //manager
+            manager.DeleteMeeting(selectedMeeting.MeetingId);
         }
     }
 }
