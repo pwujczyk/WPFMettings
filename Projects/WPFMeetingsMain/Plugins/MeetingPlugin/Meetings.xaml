@@ -1,4 +1,4 @@
-﻿<UserControl xmlns:WPFControls="clr-namespace:WPFControls;assembly=WPFControls"   
+﻿<UserControl xmlns:Notes="clr-namespace:WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Notes"    
            
              x:Class="WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Meetings"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin"
+             xmlns:WPFControls="clr-namespace:WPFControls;assembly=WPFControls" 
              mc:Ignorable="d" 
              d:DesignHeight="291.826" d:DesignWidth="564.85">
     <!--xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"-->
@@ -19,11 +20,8 @@
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
             <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="25"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TreeView Grid.Column="0" Grid.Row="0" Grid.RowSpan="100" x:Name="tvMeetings" SelectedItemChanged="tvMeetings_SelectedItemChanged" ItemsSource="{Binding Meetings}"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -58,47 +56,12 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <TextBox  Grid.Column="2" Grid.Row="2" Name="txtSubject" Text="{Binding SelectedMeeting.Subject}" ></TextBox>
-        <Label Content="Before Notes" Grid.Column="2" Grid.Row="3"></Label>
-
-        <WPFControls:RichTextBox Grid.Row="4" Grid.Column="2" Name="txtBeforeNotesXaml"  Text="{Binding SelectedMeeting.BeforeNotesXaml}" >
-            <WPFControls:RichTextBox.TextFormatter>
-                <WPFControls:PWXamlFormatter />
-            </WPFControls:RichTextBox.TextFormatter>
-            <RichTextBox.Resources>
-                <Style TargetType="{x:Type Paragraph}">
-                    <Setter Property="Margin" Value="0"/>
-                </Style>
-            </RichTextBox.Resources>
-        </WPFControls:RichTextBox>
-
-        <Label Content="During Notes" Grid.Column="2" Grid.Row="5"></Label>
-        <!--<TextBox Width="200"  x:Name="txtDuringNotes" Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding SelectedMeeting.DuringNotes}"  AcceptsReturn="True" />-->
-        <WPFControls:RichTextBox Grid.Row="6" Grid.Column="2" Name="txtDuringNotesXaml" HorizontalAlignment="Stretch"
-                          Text="{Binding SelectedMeeting.DuringNotesXaml}" SpellCheck.IsEnabled="True" xml:lang="pl-PL" 
-                                 SelectedText="{Binding SelectedText}" >
-            <WPFControls:RichTextBox.TextFormatter>
-                <WPFControls:PWXamlFormatter />
-            </WPFControls:RichTextBox.TextFormatter>
-            <RichTextBox.Resources>
-                <Style TargetType="{x:Type Paragraph}">
-                    <Setter Property="Margin" Value="0"/>
-                </Style>
-            </RichTextBox.Resources>
-        </WPFControls:RichTextBox>
-        <!--<TextBox x:Name="txtDuringNotes" Grid.Column="1" Grid.Row="6"  HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding SelectedMeeting.DuringNotes}" VerticalAlignment="Stretch" AcceptsReturn="True" />-->
-        <Label Content="After Notes" Grid.Column="2" Grid.Row="7"></Label>
-        <WPFControls:RichTextBox Grid.Row="8" Grid.Column="2" Name="txtAfterNotesXaml"  Text="{Binding SelectedMeeting.AfterNotesXaml,Delay=20}" 
-                          SpellCheck.IsEnabled="True" xml:lang="pl-PL"
-                                 SelectedText="{Binding SelectedText}">
-            <WPFControls:RichTextBox.TextFormatter>
-                <WPFControls:PWXamlFormatter />
-            </WPFControls:RichTextBox.TextFormatter>
-            <RichTextBox.Resources>
-                <Style TargetType="{x:Type Paragraph}">
-                    <Setter Property="Margin" Value="0"/>
-                </Style>
-            </RichTextBox.Resources>
-        </WPFControls:RichTextBox>
+        <Notes:NotesControl Grid.Row="3" Grid.Column="2" DataContext="{Binding SelectedMeeting.BeforeNotesXaml}" />
+        <Notes:NotesControl Grid.Row="4" Grid.Column="2" DataContext="{Binding SelectedMeeting.DuringNotesXaml}"/>
+        <Notes:NotesControl Grid.Row="5" Grid.Column="2" DataContext="{Binding SelectedMeeting.AfterNotesXaml}"/>
+        
+        
+      
         <Button x:Name="button" Content="Button" Grid.Column="2" HorizontalAlignment="Left" Margin="336,25,-46,0" Grid.Row="8" VerticalAlignment="Top" Width="75" Click="button_Click"/>
     </Grid>
 </UserControl>

@@ -62,11 +62,11 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            TextRange textRange = new TextRange(
-       txtBeforeNotesXaml.Document.ContentStart,
-       txtBeforeNotesXaml.Document.ContentEnd
-   );
-           var x= textRange.Text;
+   //         TextRange textRange = new TextRange(
+   //    txtBeforeNotesXaml.Document.ContentStart,
+   //    txtBeforeNotesXaml.Document.ContentEnd
+   //);
+   //        var x= textRange.Text;
 
 
         }

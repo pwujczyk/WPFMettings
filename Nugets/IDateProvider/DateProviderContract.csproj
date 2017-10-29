@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CDF2D03C-B19F-4101-8BAB-E71CD8904D82}</ProjectGuid>
+    <ProjectGuid>{3F8FF967-1976-4C5D-AC53-EEF7B156DA89}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MeetingsDTO</RootNamespace>
-    <AssemblyName>MeetingsDTO</AssemblyName>
+    <RootNamespace>DateProviderContract</RootNamespace>
+    <AssemblyName>DateProviderContract</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,19 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contact.cs" />
-    <Compile Include="Meeting.cs" />
+    <Compile Include="IDateProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IDateProvider\DateProviderContract.csproj">
-      <Project>{3f8ff967-1976-4c5d-ac53-eef7b156da89}</Project>
-      <Name>DateProviderContract</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\IoCManager\IoCManager.csproj">
-      <Project>{b12661af-45a4-43c6-b569-b2dd5ba2b682}</Project>
-      <Name>IoCManager</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

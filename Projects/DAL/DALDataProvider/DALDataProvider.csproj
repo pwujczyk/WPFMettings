@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\out\</OutputPath>
+    <OutputPath>..\..\..\out\debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -60,7 +60,7 @@
       <Project>{13c687e5-893e-4489-8eb6-fc7c443efcc8}</Project>
       <Name>ConnectionStringHelper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\MeetingsDTO\MeetingsDTO.csproj">
+    <ProjectReference Include="..\..\MeetingsDTO\MeetingsDTO.csproj">
       <Project>{cdf2d03c-b19f-4101-8bab-e71cd8904d82}</Project>
       <Name>MeetingsDTO</Name>
     </ProjectReference>

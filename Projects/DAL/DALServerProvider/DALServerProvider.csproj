@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\out\</OutputPath>
+    <OutputPath>..\..\..\out\debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -59,6 +59,10 @@
       <Project>{13C687E5-893E-4489-8EB6-FC7C443EFCC8}</Project>
       <Name>ConnectionStringHelper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\MeetingsDTO\MeetingsDTO.csproj">
+      <Project>{cdf2d03c-b19f-4101-8bab-e71cd8904d82}</Project>
+      <Name>MeetingsDTO</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DALContracts\DALContracts.csproj">
       <Project>{88624aa2-898b-4f1c-9f3c-7a377ff91fb0}</Project>
       <Name>DALContracts</Name>
@@ -66,10 +70,6 @@
     <ProjectReference Include="..\DALServer\DALServer.csproj">
       <Project>{a6d975fb-eef6-4cbb-a8a9-a166ac06f46f}</Project>
       <Name>DALServer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\MeetingsDTO\MeetingsDTO.csproj">
-      <Project>{cdf2d03c-b19f-4101-8bab-e71cd8904d82}</Project>
-      <Name>MeetingsDTO</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Tools\Tools.csproj">
       <Project>{41325001-17C5-4D16-8E6C-75F38EAA1A26}</Project>

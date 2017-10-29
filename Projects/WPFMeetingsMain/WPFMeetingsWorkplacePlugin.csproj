@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\out\</OutputPath>
+    <OutputPath>..\..\out\debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,6 +40,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -97,6 +99,9 @@
     <Compile Include="Plugins\ContactsPlugin\Functions\LoadMeetings.cs" />
     <Compile Include="Plugins\ContactsPlugin\Functions\New.cs" />
     <Compile Include="Plugins\ContactsPlugin\Functions\Save.cs" />
+    <Compile Include="Plugins\MeetingPlugin\Notes\NotesControl.xaml.cs">
+      <DependentUpon>NotesControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -135,19 +140,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Plugins\MeetingPlugin\Notes\NotesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\WPFRibbonWorkplace\WPFRibbonWorkplaceContracts\WPFRibbonWorkplaceContracts.csproj">
       <Project>{c3061b25-9224-4637-8023-ab4e0ac64aa1}</Project>
       <Name>WPFRibbonWorkplaceContracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\MeetingsDTO\MeetingsDTO.csproj">
-      <Project>{cdf2d03c-b19f-4101-8bab-e71cd8904d82}</Project>
-      <Name>MeetingsDTO</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{397dbce2-1e86-4ede-8d49-40835dc1452b}</Project>
       <Name>BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeetingsDTO\MeetingsDTO.csproj">
+      <Project>{cdf2d03c-b19f-4101-8bab-e71cd8904d82}</Project>
+      <Name>MeetingsDTO</Name>
     </ProjectReference>
     <ProjectReference Include="..\WPFControls\WPFControls.csproj">
       <Project>{17042d6d-f2fc-4fe9-ad0b-0dc1c22af578}</Project>

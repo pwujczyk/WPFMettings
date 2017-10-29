@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\out\</OutputPath>
+    <OutputPath>..\..\..\out\debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -55,7 +55,7 @@
       <Project>{13c687e5-893e-4489-8eb6-fc7c443efcc8}</Project>
       <Name>ConnectionStringHelper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\DBUpPW\DBUpPW.csproj">
+    <ProjectReference Include="..\..\..\Nugets\DBUpPW\DBUpPW.csproj">
       <Project>{14efde55-25b7-4931-a75f-e22dfd52d63f}</Project>
       <Name>DBUpPW</Name>
     </ProjectReference>

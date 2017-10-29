@@ -20,7 +20,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
             this.AddContact = new RelayCommand(AddContactRelay);
         }
 
-        MeetingsManager Model = new MeetingsManager();
+        MeetingsManager MetingsManager = new MeetingsManager();
 
         public ICommand AddContact { get; set; }
 
@@ -102,7 +102,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
 
         private List<Meeting> GetMeetings()
         {
-            return Model.GetMeetings();
+            return MetingsManager.GetMeetings();
         }
 
         public void ClearFields()
@@ -116,7 +116,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
             NotifyPropertyChanged("SelectedMeeting");
             NotifyPropertyChanged("TextRawProperty");
             var x = SelectedMeeting.DuringNotes;
-            this.Model.SaveMeeting(SelectedMeeting);
+            this.MetingsManager.SaveMeeting(SelectedMeeting);
             if (!SelectedMeeting.MeetingId.HasValue)
             {
                 ReloadMeetings();
@@ -133,7 +133,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
 
         public void DeleteMeeting()
         {
-            this.Model.DeleteMeeting(SelectedMeeting);
+            this.MetingsManager.DeleteMeeting(SelectedMeeting);
             ReloadMeetings();
         }
         

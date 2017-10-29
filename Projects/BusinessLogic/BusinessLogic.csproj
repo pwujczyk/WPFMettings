@@ -45,13 +45,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\MeetingsDTO\MeetingsDTO.csproj">
-      <Project>{cdf2d03c-b19f-4101-8bab-e71cd8904d82}</Project>
-      <Name>MeetingsDTO</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DAL\DALDataProvider\DALDataProvider.csproj">
       <Project>{800ebf50-a730-4067-872b-401f82b0af49}</Project>
       <Name>DALDataProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeetingsDTO\MeetingsDTO.csproj">
+      <Project>{cdf2d03c-b19f-4101-8bab-e71cd8904d82}</Project>
+      <Name>MeetingsDTO</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
