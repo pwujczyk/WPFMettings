@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Contact.cs" />
     <Compile Include="Meeting.cs" />
+    <Compile Include="Notes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

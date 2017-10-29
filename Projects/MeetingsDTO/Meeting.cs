@@ -15,9 +15,9 @@ namespace MeetingsDTO
         public string BeforeNotes { get; set; }
         public string DuringNotes { get; set; }
         public string AfterNotes { get; set; }
-        public string BeforeNotesXaml { get; set; }
-        public string DuringNotesXaml { get; set; }
-        public string AfterNotesXaml { get; set; }
+        public Notes BeforeNotesXaml { get; set; }
+        public Notes DuringNotesXaml { get; set; }
+        public Notes AfterNotesXaml { get; set; }
         public ObservableCollection<Contact> Contacts { get; set; }
         public string Subject { get; set; }
 

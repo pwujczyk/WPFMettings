@@ -102,6 +102,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
 
         private List<Meeting> GetMeetings()
         {
+            return new List<Meeting>();
             return MetingsManager.GetMeetings();
         }
 

@@ -19,7 +19,7 @@
         <!--SelectedText="{Binding SelectedText}"-->
         <Label Content="After Notes" Grid.Column="0" Grid.Row="0"></Label>
         <WPFControls:RichTextBox Grid.Row="1" Grid.Column="0"   
-                               Text="{Binding .}"
+                               Text="{Binding Text}"
                                SpellCheck.IsEnabled="True" xml:lang="pl-PL"
                                >
             <WPFControls:RichTextBox.TextFormatter>
