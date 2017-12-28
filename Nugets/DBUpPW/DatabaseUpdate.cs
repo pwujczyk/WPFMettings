@@ -14,21 +14,18 @@ namespace DBUpPW
 {
     public class DatabaseUpdate
     {
-        
-        private string JournalSchema = "adm";
-        private string DbUpjournalTableName = "DBup";
 
-        public DatabaseUpdate()
-        {
+        private string JorunalSchema;
+        private string JorunalTableName;
 
-        }
-        public DatabaseUpdate(string journalSchema, string dbupJournalTableName):this()
+        public DatabaseUpdate(string journalSchema) : this(journalSchema, "dbUp") { }
+        public DatabaseUpdate(string journalSchema, string dbupJournalTableName)
         {
-            this.JournalSchema = journalSchema;
-            this.DbUpjournalTableName = dbupJournalTableName;
+            this.JorunalSchema = journalSchema;
+            this.JorunalTableName = dbupJournalTableName;
         }
 
-        public void CreateSqlCe(string path,string connectionString)
+        public void CreateSqlCe(string path, string connectionString)
         {
             if (!File.Exists(path))
             {
@@ -42,7 +39,7 @@ namespace DBUpPW
             var upgrader = DbUp.DeployChanges.To
               .SqlCeDatabase(updateDBConnectionString)
               .WithScriptsEmbeddedInAssembly(assembly)
-              .JournalToSqlTable(null,"DBUp")
+              .JournalToSqlTable(null, "DBUp")
               .LogToConsole()
               .Build();
 
@@ -58,7 +55,7 @@ namespace DBUpPW
             }
         }
 
-        public void CreateSQLDB(string databaseName, string setupDBConnectionString)
+        public void CreateSQLDB(string databaseName, string dataSourceConnectionString)
         {
             string query = string.Format(@"IF NOT EXISTS ( SELECT [Name] FROM sys.databases WHERE [name] = '{0}' )
                             BEGIN
@@ -66,16 +63,17 @@ namespace DBUpPW
                             END
                             ", databaseName);
 
-            InvokeQuery(setupDBConnectionString, query);
+            InvokeQuery(dataSourceConnectionString, query);
         }
 
-        public void CreateAdmSchema(string updateDBConnectionString)
+        [Obsolete]
+        public void CreateAdmSchema(string initialCatalogConnectionString)
         {
-           var query = @"IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'adm')
+            var query = string.Format(@"IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = '{0}')
                             BEGIN
-                            EXEC('CREATE SCHEMA adm')
-                            END";
-            InvokeQuery(updateDBConnectionString, query);
+                            EXEC('CREATE SCHEMA {0}')
+                            END", JorunalSchema);
+            InvokeQuery(initialCatalogConnectionString, query);
         }
 
         private static void InvokeQuery(string connectionString, string query)
@@ -88,12 +86,22 @@ namespace DBUpPW
             }
         }
 
+        public void PerformUpdate(string dataSource, string databaseName, Assembly assembly)
+        {
+            var dataSourceCS = ConnectionStringHelper.ConnectionString.GetSQLDataSourceConnectionString(dataSource);
+            CreateSQLDB(databaseName, dataSourceCS);
+
+            CreateAdmSchema(ConnectionStringHelper.ConnectionString.GetSqlServerConnectionString(dataSource, databaseName));
+            UpdateDatabase(assembly, ConnectionStringHelper.ConnectionString.GetSqlServerConnectionString(dataSource, databaseName));
+        }
+
+        [Obsolete]
         public void UpdateDatabase(Assembly assembly, string updateDBConnectionString)
         {
             var upgrader = DbUp.DeployChanges.To
               .SqlDatabase(updateDBConnectionString)
               .WithScriptsEmbeddedInAssembly(assembly)
-              .JournalToSqlTable("adm", "DBUp")
+              .JournalToSqlTable(JorunalSchema, JorunalTableName)
               .LogToConsole()
               .Build();
 

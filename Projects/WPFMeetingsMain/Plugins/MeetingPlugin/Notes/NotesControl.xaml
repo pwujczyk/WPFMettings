@@ -21,6 +21,7 @@
         <WPFControls:RichTextBox Grid.Row="1" Grid.Column="0"   
                                Text="{Binding Text}"
                                SpellCheck.IsEnabled="True" xml:lang="pl-PL"
+SelectedText="{Binding Text}" Background="#FFE22D2D" Margin="0,3,0,-3"
                                >
             <WPFControls:RichTextBox.TextFormatter>
                 <WPFControls:PWXamlFormatter />

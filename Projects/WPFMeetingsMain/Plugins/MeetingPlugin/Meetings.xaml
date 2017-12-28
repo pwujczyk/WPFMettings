@@ -56,12 +56,25 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
         <TextBox  Grid.Column="2" Grid.Row="2" Name="txtSubject" Text="{Binding SelectedMeeting.Subject}" ></TextBox>
-        <Notes:NotesControl Grid.Row="3" Grid.Column="2" DataContext="{Binding SelectedMeeting.BeforeNotesXaml}" />
-        <Notes:NotesControl Grid.Row="4" Grid.Column="2" DataContext="{Binding SelectedMeeting.DuringNotesXaml}"/>
-        <Notes:NotesControl Grid.Row="5" Grid.Column="2" DataContext="{Binding SelectedMeeting.AfterNotesXaml}"/>
-        
-        
-      
-        <Button x:Name="button" Content="Button" Grid.Column="2" HorizontalAlignment="Left" Margin="336,25,-46,0" Grid.Row="8" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <!--<Notes:NotesControl Grid.Row="3" Grid.Column="2" DataContext="{Binding SelectedMeeting.BeforeNotesXaml, Mode=TwoWay}" />
+        <Notes:NotesControl Grid.Row="4" Grid.Column="2" DataContext="{Binding SelectedMeeting.DuringNotesXaml, Mode=TwoWay}"/>
+        <Notes:NotesControl Grid.Row="5" Grid.Column="2" DataContext="{Binding SelectedMeeting.AfterNotesXaml, Mode=TwoWay}"/>-->
+
+        <ItemsControl Grid.Column="2" Grid.Row="3" ItemsSource="{Binding Notes}" >
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <!--<Button  Content="{Binding Name}"></Button>-->
+                    <Notes:NotesControl DataContext="{Binding Notes, Mode=TwoWay}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+
+        <Button x:Name="button" Command="{Binding EnterNotes}" Content="Button" Grid.Column="2" HorizontalAlignment="Left" Margin="336,25,-46,0" Grid.Row="8" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </UserControl>

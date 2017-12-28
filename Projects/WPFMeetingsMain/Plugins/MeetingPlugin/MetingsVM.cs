@@ -18,12 +18,20 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
         public MetingsVM()
         {
             this.AddContact = new RelayCommand(AddContactRelay);
+            this.EnterNotes = new RelayCommand(EnterNotesRelay);
+            this.Notes = new ObservableCollection<NotesVM>();
+            this.Notes.Add(new NotesVM() { Notes = new MeetingsDTO.Notes() { Text = "pawel" }});
+        }
+
+        private void EnterNotesRelay(object obj)
+        {
+            LoadMenu(null);
         }
 
         MeetingsManager MetingsManager = new MeetingsManager();
 
         public ICommand AddContact { get; set; }
-
+        public ICommand EnterNotes { get; set; }
         
         List<Contact> contacts;
         public List<Contact> Contacts
@@ -65,6 +73,9 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
                 return this.meetings;
             }
         }
+
+            
+
         
         public bool SelectedText
         {
@@ -76,6 +87,8 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
             this.meetings = new ObservableCollection<Meeting>(GetMeetings());
             NotifyPropertyChanged("Meetings");
         }
+
+        public ObservableCollection<NotesVM> Notes { get; set; }
 
         private Meeting selectedMeeting;
         public Meeting SelectedMeeting
@@ -102,13 +115,13 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
 
         private List<Meeting> GetMeetings()
         {
-            return new List<Meeting>();
+            //return new List<Meeting>();
             return MetingsManager.GetMeetings();
         }
 
         public void ClearFields()
         {
-            this.SelectedMeeting.AfterNotes = this.SelectedMeeting.BeforeNotes = this.SelectedMeeting.DuringNotes = string.Empty;
+            //this.SelectedMeeting.AfterNotes = this.SelectedMeeting.BeforeNotes = this.SelectedMeeting.DuringNotes = string.Empty;
             NotifyPropertyChanged("SelectedMeeting");
         }
 
@@ -116,7 +129,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
         {
             NotifyPropertyChanged("SelectedMeeting");
             NotifyPropertyChanged("TextRawProperty");
-            var x = SelectedMeeting.DuringNotes;
+            //var x = SelectedMeeting.DuringNotes;
             this.MetingsManager.SaveMeeting(SelectedMeeting);
             if (!SelectedMeeting.MeetingId.HasValue)
             {

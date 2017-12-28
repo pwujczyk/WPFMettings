@@ -58,6 +58,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\ConnectionStringHelper\ConnectionStringHelper\ConnectionStringHelper.csproj">
+      <Project>{13c687e5-893e-4489-8eb6-fc7c443efcc8}</Project>
+      <Name>ConnectionStringHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

@@ -26,9 +26,16 @@ namespace DALServerProvider
         {
             configuration = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<MeetingsDTO.Meeting, DALServer.Meeting>();
+                cfg.CreateMap<MeetingsDTO.Meeting, DALServer.Meeting>()
+                .ForMember(dst => dst.BeforeNotesXaml, opt => opt.MapFrom(src => src.BeforeNotesXaml.Text))
+                .ForMember(dst => dst.AfterNotesXaml, opt => opt.MapFrom(src => src.AfterNotesXaml.Text))
+                .ForMember(dst => dst.DuringNotesXaml, opt => opt.MapFrom(src => src.DuringNotesXaml.Text));
 
-                cfg.CreateMap<DALServer.Meeting, MeetingsDTO.Meeting>();
+
+                cfg.CreateMap<DALServer.Meeting, MeetingsDTO.Meeting>()
+                .ForMember(dst => dst.BeforeNotesXaml, opt => opt.MapFrom(src => new MeetingsDTO.Notes() { Text = src.BeforeNotesXaml }))
+                .ForMember(dst => dst.AfterNotesXaml, opt => opt.MapFrom(src => new MeetingsDTO.Notes() { Text = src.AfterNotesXaml }))
+                .ForMember(dst => dst.DuringNotesXaml, opt => opt.MapFrom(src => new MeetingsDTO.Notes() { Text = src.DuringNotesXaml }));
 
 
                 cfg.CreateMap<DALServer.Contact, MeetingsDTO.Contact>();

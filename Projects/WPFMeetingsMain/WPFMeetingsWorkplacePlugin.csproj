@@ -89,6 +89,7 @@
     <Compile Include="Plugins\MeetingPlugin\Meetings.xaml.cs">
       <DependentUpon>Meetings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Plugins\MeetingPlugin\NotesVM.cs" />
     <Compile Include="Plugins\MeetingPlugin\MetingsBM.cs" />
     <Compile Include="Plugins\MeetingPlugin\MetingsVM.cs" />
     <Compile Include="Plugins\ContactsPlugin\Contacts.xaml.cs">
@@ -116,6 +117,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="PWXamlFormatter.cs" />
+    <Compile Include="RelayCommand.cs" />
     <Compile Include="VMBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

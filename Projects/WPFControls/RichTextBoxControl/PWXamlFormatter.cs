@@ -38,7 +38,8 @@ namespace WPFControls
                     var bytes = Encoding.UTF8.GetBytes(text);
                     using (MemoryStream ms = new MemoryStream(bytes))
                     {
-                        tr.Load(ms, DataFormats.Xaml);
+                        //tr.Load(ms, DataFormats.Xaml);
+                        tr.Load(ms, DataFormats.Text);
                     }
                 }
             }

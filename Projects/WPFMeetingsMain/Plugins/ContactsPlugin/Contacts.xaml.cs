@@ -33,6 +33,22 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin
             this.DataContext = VM;
         }
 
+        public LoadMenu LoadMenu
+        {
+            set
+            {
+                this.VM.LoadMenu = value;
+            }
+        }
+
+        public UnLoadMenu UnLoadMenu
+        {
+            set
+            {
+                this.VM.UnLoadMenu = value;
+            }
+        }
+
         public List<IFunction> Functions
         {
             get

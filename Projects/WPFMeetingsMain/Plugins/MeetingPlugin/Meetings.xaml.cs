@@ -33,6 +33,22 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
             this.DataContext = VM;
         }
 
+        public LoadMenu LoadMenu
+        {
+            set
+            {
+                this.VM.LoadMenu = value;
+            }
+        }
+
+        public UnLoadMenu UnLoadMenu
+        {
+            set
+            {
+                this.VM.UnLoadMenu = value;
+            }
+        }
+
         public List<IFunction> Functions
         {
             get
@@ -69,6 +85,11 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
    //        var x= textRange.Text;
 
 
+        }
+
+        private void richTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Fsa");
         }
     }
 }

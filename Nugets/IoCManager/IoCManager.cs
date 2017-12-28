@@ -11,29 +11,32 @@ namespace IoCManager
 {
     public static class IoCManager
     {
+        public static T GetSinglenstance<T>()
+        {
+            Assembly[] assemblies = GetAssembliesFromApplicationBaseDirectory(x=>true);
+            return GetSinglenstance<T>(assemblies);
+        }
+
         public static T GetSinglenstance<T>(string dllStartName)
         {
-            var builder = new ContainerBuilder();
-
             Assembly[] assemblies = GetAssembliesFromApplicationBaseDirectory(x => x.FullName.StartsWith(dllStartName));
+            return GetSinglenstance<T>(assemblies);
+        }
+
+        public static T GetSinglenstance<T>(Assembly[] assemblies)
+        {
+            var builder = new ContainerBuilder();
+            
             Type typeParameterType = typeof(T);
             string typeName = typeParameterType.Name;
             builder.RegisterAssemblyTypes(assemblies).Where(t => t.Name == typeName).AsImplementedInterfaces();
 
             builder.RegisterAssemblyModules(assemblies);
-
-            //var assemblies = AppDomain.CurrentDomain.GetAssemblies();z
-
-
-            //var builder = new ContainerBuilder();
             builder.RegisterAssemblyTypes(assemblies)
                 .Where(t => t.GetInterfaces()
                 .Any(i => i.IsAssignableFrom(typeof(T))))
                 .AsImplementedInterfaces()
                 .InstancePerDependency();
-
-            //.Where(t => t.IsAssignableFrom(typeof(IPluginMainWindow)))
-            //.As<IPluginMainWindow>();
 
             var container = builder.Build();
             var pluginClasses = container.Resolve<IEnumerable<T>>();
@@ -44,10 +47,8 @@ namespace IoCManager
             }
             catch (Exception ex)
             {
-
-                throw new Exception("Not single implementaiton");
-            }
-           
+                throw new Exception("Not single implementaiton", ex);
+            }          
         }
 
         private static Assembly[] GetAssembliesFromApplicationBaseDirectory(Func<AssemblyName, bool> condition)
@@ -66,10 +67,8 @@ namespace IoCManager
             }
             catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
-
         }
     }
 }
