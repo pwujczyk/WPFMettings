@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
+namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Notes
 {
     public class NotesVM : VMBase, INotifyPropertyChanged
     {

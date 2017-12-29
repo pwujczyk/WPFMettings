@@ -86,12 +86,12 @@
     <Compile Include="Plugins\MeetingPlugin\Functions\LoadContacts.cs" />
     <Compile Include="Plugins\MeetingPlugin\Functions\Save.cs" />
     <Compile Include="Plugins\MeetingPlugin\Functions\New.cs" />
-    <Compile Include="Plugins\MeetingPlugin\Meetings.xaml.cs">
-      <DependentUpon>Meetings.xaml</DependentUpon>
+    <Compile Include="Plugins\MeetingPlugin\Meetings\MeetingControl.xaml.cs">
+      <DependentUpon>MeetingControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Plugins\MeetingPlugin\NotesVM.cs" />
-    <Compile Include="Plugins\MeetingPlugin\MetingsBM.cs" />
-    <Compile Include="Plugins\MeetingPlugin\MetingsVM.cs" />
+    <Compile Include="Plugins\MeetingPlugin\Notes\NotesVM.cs" />
+    <Compile Include="Plugins\MeetingPlugin\Meetings\MetingsBM.cs" />
+    <Compile Include="Plugins\MeetingPlugin\Meetings\MetingsVM.cs" />
     <Compile Include="Plugins\ContactsPlugin\Contacts.xaml.cs">
       <DependentUpon>Contacts.xaml</DependentUpon>
     </Compile>
@@ -134,7 +134,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Plugins\MeetingPlugin\Meetings.xaml">
+    <Page Include="Plugins\MeetingPlugin\Meetings\MeetingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

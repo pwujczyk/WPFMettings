@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin;
 using WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin.Functions;
 using WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin;
+using WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Meetings;
 using WPFRibbonWorkplaceContracts;
 
 namespace WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin
@@ -56,7 +57,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin
                 var list = new List<IFunction>();
                 list.Add(new New(this.VM));
                 list.Add(new Save(this.VM));
-                list.Add(new LoadMeetings(typeof(Meetings)));
+                list.Add(new LoadMeetings(typeof(MeetingControl)));
                 return list;
             }
         }

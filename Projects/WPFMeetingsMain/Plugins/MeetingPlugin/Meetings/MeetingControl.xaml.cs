@@ -18,15 +18,15 @@ using WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin;
 using WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Functions;
 using WPFRibbonWorkplaceContracts;
 
-namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
+namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Meetings
 {
     /// <summary>
     /// Interaction logic for MeetingsMainWindow.xaml
     /// </summary>
-    public partial class Meetings : UserControl, IPluginMainWindow
+    public partial class MeetingControl : UserControl, IPluginMainWindow
     {
         MetingsVM VM;
-        public Meetings()
+        public MeetingControl()
         {
             InitializeComponent();
             VM = new MetingsVM();

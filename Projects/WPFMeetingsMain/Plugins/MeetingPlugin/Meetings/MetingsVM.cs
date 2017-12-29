@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using WPFMeetingsWorkplacePlugin.Arch;
 using WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin;
+using WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Meetingss;
+using WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Notes;
 
-namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
+namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Meetings
 {
     public class MetingsVM : VMBase, INotifyPropertyChanged
     {

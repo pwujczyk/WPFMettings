@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Meetings;
 using WPFRibbonWorkplaceContracts;
 
 namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Functions
@@ -14,7 +15,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Functions
         private const string NewSection = "Meeting";
         private const string NewTab = "Meeting";
 
-        MetingsVM VM;
+        Meetings.MetingsVM VM;
 
         string IFunction.FunctionName
         {
