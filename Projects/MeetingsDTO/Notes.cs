@@ -9,5 +9,7 @@ namespace MeetingsDTO
     public class Notes
     {
         public string Text { get; set; }
+
+        public bool SelectedText { get; set; }
     }
 }

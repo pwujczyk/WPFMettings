@@ -39,8 +39,11 @@ namespace WPFControls
         private static object CoerceSelectedTextProperty(DependencyObject d, object value)
         {
             var rtb = (d as RichTextBox);
-            //var x = (d as RichTextBox).Selection;
-            EditingCommands.ToggleBullets.Execute(null, rtb);
+            var selection = (d as RichTextBox).Selection;
+            if (!selection.IsEmpty)
+            {
+                EditingCommands.ToggleBullets.Execute(null, rtb);
+            }
             return null;
         }
 

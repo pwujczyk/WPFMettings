@@ -79,7 +79,14 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
         
         public bool SelectedText
         {
-            get;set;
+            set
+            {
+                this.SelectedMeeting.DuringNotesXaml.SelectedText = value;
+            }
+            get
+            {
+                return this.SelectedMeeting.DuringNotesXaml.SelectedText;
+            }
         }
 
         private void ReloadMeetings()
@@ -153,7 +160,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
         
         public void Bullet()
         {
-            this.SelectedText = true;
+// this.SelectedText = !this.SelectedText;
             NotifyPropertyChanged("SelectedText");
         }
     }
