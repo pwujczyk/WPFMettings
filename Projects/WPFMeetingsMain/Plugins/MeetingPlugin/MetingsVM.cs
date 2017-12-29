@@ -19,8 +19,12 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
         {
             this.AddContact = new RelayCommand(AddContactRelay);
             this.EnterNotes = new RelayCommand(EnterNotesRelay);
-            this.Notes = new ObservableCollection<NotesVM>();
-            this.Notes.Add(new NotesVM() { Notes = new MeetingsDTO.Notes() { Text = "pawel" }});
+
+
+            this.NotesVM = new ObservableCollection<NotesVM>();
+            this.NotesVM.Add(new NotesVM());
+            this.NotesVM.Add(new NotesVM());
+            this.NotesVM.Add(new NotesVM());
         }
 
         private void EnterNotesRelay(object obj)
@@ -32,7 +36,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
 
         public ICommand AddContact { get; set; }
         public ICommand EnterNotes { get; set; }
-        
+
         List<Contact> contacts;
         public List<Contact> Contacts
         {
@@ -74,9 +78,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
             }
         }
 
-            
 
-        
         public bool SelectedText
         {
             set
@@ -95,7 +97,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
             NotifyPropertyChanged("Meetings");
         }
 
-        public ObservableCollection<NotesVM> Notes { get; set; }
+        public ObservableCollection<NotesVM> NotesVM { get; set; }
 
         private Meeting selectedMeeting;
         public Meeting SelectedMeeting
@@ -107,9 +109,16 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
             set
             {
                 this.selectedMeeting = value;
+                UpdateNotes();
                 NotifyPropertyChanged("SelectedMeeting");
-                
             }
+        }
+
+        private void UpdateNotes()
+        {
+            this.NotesVM[0].Note = this.SelectedMeeting.BeforeNotesXaml;
+            this.NotesVM[1].Note = this.SelectedMeeting.DuringNotesXaml;
+            this.NotesVM[2].Note = this.SelectedMeeting.AfterNotesXaml;
         }
 
         internal void AddNew()
@@ -157,11 +166,21 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin
             this.MetingsManager.DeleteMeeting(SelectedMeeting);
             ReloadMeetings();
         }
-        
+
         public void Bullet()
         {
-// this.SelectedText = !this.SelectedText;
-            NotifyPropertyChanged("SelectedText");
+            // this.SelectedText = !this.SelectedText;
+            foreach (var item in this.NotesVM)
+            {
+                item.BulletChanged();
+            }
+            //this.SelectedMeeting = this.Meetings[2];
+            //this.NotesVM[0].Note = this.SelectedMeeting.BeforeNotesXaml;
+            //this.NotesVM[1].Note = this.SelectedMeeting.DuringNotesXaml;
+            //NotifyPropertyChanged("SelectedMeeting");
+            //NotifyPropertyChanged("SelectedText");
+            //NotifyPropertyChanged("SelectedMeeting");
+            //NotifyPropertyChanged("Note");
         }
     }
 }

@@ -19,10 +19,8 @@
         <!--SelectedText="{Binding SelectedText}"-->
         <Label Content="After Notes" Grid.Column="0" Grid.Row="0"></Label>
         <WPFControls:RichTextBox Grid.Row="1" Grid.Column="0"   
-                               Text="{Binding Text}"
-                               SpellCheck.IsEnabled="True" xml:lang="pl-PL"
-SelectedText="{Binding SelectedText}" Background="#FFE22D2D" Margin="0,3,0,-3"
-                               >
+                               Text="{Binding Note.Text}" Height="200px"
+                               SpellCheck.IsEnabled="True" xml:lang="pl-PL" SelectedText="{Binding Note.SelectedText}" >
             <WPFControls:RichTextBox.TextFormatter>
                 <WPFControls:PWXamlFormatter />
             </WPFControls:RichTextBox.TextFormatter>

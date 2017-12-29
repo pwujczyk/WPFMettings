@@ -34,7 +34,7 @@ namespace WPFControls
 
         #region Properties
 
-        public static readonly DependencyProperty SelectedTextProperty= DependencyProperty.Register("SelectedText", typeof(string), typeof(RichTextBox), new FrameworkPropertyMetadata(String.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedTextPropertyChanged, CoerceSelectedTextProperty, true, UpdateSourceTrigger.PropertyChanged));
+        public static readonly DependencyProperty SelectedTextProperty= DependencyProperty.Register("SelectedText", typeof(string), typeof(RichTextBox), new FrameworkPropertyMetadata(String.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedTextPropertyChanged, CoerceSelectedTextProperty, true, UpdateSourceTrigger.Explicit));
 
         private static object CoerceSelectedTextProperty(DependencyObject d, object value)
         {
