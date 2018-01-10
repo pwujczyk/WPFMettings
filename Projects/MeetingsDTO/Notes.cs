@@ -8,6 +8,8 @@ namespace MeetingsDTO
 {
     public class Notes
     {
+
+        public string TypeText { get; set; }
         public string Text { get; set; }
 
         public bool SelectedText { get; set; }

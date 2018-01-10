@@ -9,34 +9,35 @@ using WPFRibbonWorkplaceContracts;
 
 namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Functions
 {
-    public class Save : BaseFunction, IFunction
+    class LanguageSwitcher : BaseFunction, IFunction
     {
-        MetingsVM VM; 
-        private const string AddName = "Save";
-        private const string AddSection = "Meeting";
-        private const string AddTab = "Meeting";
+        private const string NewName = "Language";
+        private const string NewSection = "Meeting";
+        private const string NewTab = "Meeting";
 
-        public string FunctionName
+        Meetings.MetingsVM VM;
+
+        string IFunction.FunctionName
         {
             get
             {
-                return AddName;
+                return NewName;
             }
         }
 
-        public string SectionName
+        string IFunction.SectionName
         {
             get
             {
-                return AddSection;
+                return NewSection;
             }
         }
 
-        public string TabName
+        string IFunction.TabName
         {
             get
             {
-                return AddTab;
+                return NewTab;
             }
         }
 
@@ -48,14 +49,16 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Functions
             }
         }
 
-        public Save(MetingsVM vm)
+        public LanguageSwitcher(MetingsVM vm)
         {
-            this.VM = vm;
+            VM = vm;
         }
 
-        public void Method()
+        void IFunction.Method()
         {
-            this.VM.SaveMeeting();
+          
         }
     }
 }
+
+

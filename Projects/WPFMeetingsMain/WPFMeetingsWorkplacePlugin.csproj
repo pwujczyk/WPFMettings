@@ -83,6 +83,7 @@
     <Compile Include="Arch\RelayCommand.cs" />
     <Compile Include="Plugins\MeetingPlugin\Functions\Bullet.cs" />
     <Compile Include="Plugins\MeetingPlugin\Functions\Delete.cs" />
+    <Compile Include="Plugins\MeetingPlugin\Functions\LanguageSwitcher.cs" />
     <Compile Include="Plugins\MeetingPlugin\Functions\LoadContacts.cs" />
     <Compile Include="Plugins\MeetingPlugin\Functions\Save.cs" />
     <Compile Include="Plugins\MeetingPlugin\Functions\New.cs" />

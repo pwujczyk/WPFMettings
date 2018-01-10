@@ -9,6 +9,7 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Notes
 {
     public class NotesVM : VMBase, INotifyPropertyChanged
     {
+        public string TypeText { get; set; }
 
         private MeetingsDTO.Notes note;
         public MeetingsDTO.Notes Note

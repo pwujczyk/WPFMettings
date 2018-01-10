@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Meetings;
 using WPFRibbonWorkplaceContracts;
 
@@ -38,6 +39,14 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Functions
             get
             {
                 return NewTab;
+            }
+        }
+
+        public Type ButtonType
+        {
+            get
+            {
+                return typeof(Button);
             }
         }
 

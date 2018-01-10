@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using WPFRibbonWorkplaceContracts;
 
 namespace WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin.Functions
@@ -36,6 +37,14 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.ContactsPlugin.Functions
             get
             {
                 return NewTab;
+            }
+        }
+
+        public Type ButtonType
+        {
+            get
+            {
+                return typeof(Button);
             }
         }
 

@@ -72,8 +72,5 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-
-
-        <Button x:Name="button" Command="{Binding EnterNotes}" Content="Button" Grid.Column="2" HorizontalAlignment="Left" Margin="336,25,-46,0" Grid.Row="8" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </UserControl>

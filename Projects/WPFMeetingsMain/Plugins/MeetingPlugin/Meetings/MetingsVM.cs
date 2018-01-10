@@ -27,6 +27,9 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Meetings
             this.NotesVM.Add(new NotesVM());
             this.NotesVM.Add(new NotesVM());
             this.NotesVM.Add(new NotesVM());
+            this.NotesVM[2].TypeText = "After Notes";
+            this.NotesVM[1].TypeText = "During Notes";
+            this.NotesVM[0].TypeText = "Before Notes";
         }
 
         private void EnterNotesRelay(object obj)
@@ -119,8 +122,11 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Meetings
         private void UpdateNotes()
         {
             this.NotesVM[0].Note = this.SelectedMeeting.BeforeNotesXaml;
+  
             this.NotesVM[1].Note = this.SelectedMeeting.DuringNotesXaml;
+        
             this.NotesVM[2].Note = this.SelectedMeeting.AfterNotesXaml;
+          
         }
 
         internal void AddNew()

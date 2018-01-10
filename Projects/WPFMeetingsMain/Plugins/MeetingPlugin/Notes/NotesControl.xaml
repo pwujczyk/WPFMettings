@@ -12,14 +12,14 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" ></RowDefinition>
+            <RowDefinition Height="26" ></RowDefinition>
             <RowDefinition ></RowDefinition>
         </Grid.RowDefinitions>
         <!--Text="{Binding SelectedMeeting.AfterNotesXaml}"-->
         <!--SelectedText="{Binding SelectedText}"-->
-        <Label Content="After Notes" Grid.Column="0" Grid.Row="0"></Label>
+        <Label Content="{Binding TypeText}" Grid.Column="0" Grid.Row="0"></Label>
         <WPFControls:RichTextBox Grid.Row="1" Grid.Column="0"   
-                               Text="{Binding Note.Text}" Height="200px"
+                               Text="{Binding Note.Text}" Height="200px" Margin="4"
                                SpellCheck.IsEnabled="True" xml:lang="pl-PL" SelectedText="{Binding Note.SelectedText}" >
             <WPFControls:RichTextBox.TextFormatter>
                 <WPFControls:PWXamlFormatter />

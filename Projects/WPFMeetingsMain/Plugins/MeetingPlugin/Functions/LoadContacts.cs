@@ -43,6 +43,14 @@ namespace WPFMeetingsWorkplacePlugin.Plugins.MeetingPlugin.Functions
             }
         }
 
+        public Type ButtonType
+        {
+            get
+            {
+                return typeof(Button);
+            }
+        }
+
         //public LoadContacts(IPlugin userControl)
         //{
         //    UserControl = userControl;
